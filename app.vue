@@ -1,5 +1,5 @@
 <template>
   <div>
-    <formular />
+    <FormsPageSpeed />
   </div>
 </template>
