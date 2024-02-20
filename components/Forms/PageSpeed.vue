@@ -2,7 +2,8 @@
 const isSending = ref(false);
 const error = ref(false);
 const message = ref(null);
-
+const result = ref(null);
+const router = useRouter();
 const formData = ref({
   firstName: "",
   lastName: "",
@@ -13,19 +14,27 @@ const formData = ref({
 
 const pageSpeedForm = async () => {
   isSending.value = true;
-  const response = await fetch("http://localhost:3000/controllers/newpage", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(formData.value),
-  });
-  isSending.value = false;
-  error.value = response.status > 399;
-  const data = await response.json();
-  if (error) {
-    message.value = error;
-    return;
+  message.value =
+    "Das kann jetzt ein einige Minuten dauern, wir bitten um etwas Gedult";
+  try {
+    const response = await fetch("http://localhost:3000/controllers/newpage", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData.value),
+    });
+    if (!response.ok) {
+      throw new Error("Networ response was not ok");
+    }
+    const data = await response.json();
+    message.value = data.message;
+    result.value = data.websiteId;
+  } catch (error) {
+    error.value = true;
+    message.value = "Da ist wohl was schief gelaufen, bitte nochmal versuchen.";
+  } finally {
+    isSending.value = false;
+    router.push({ path: "/result/?id=" + result.value });
   }
-  message.value = data;
 };
 </script>
 <template>
@@ -50,7 +59,7 @@ const pageSpeedForm = async () => {
 
     <FormsElementInput
       id="email"
-      label="E-Mail Adresse"
+      label="E-Mail Adresse:"
       type="text"
       name="fname"
       v-model="formData.email"
@@ -59,7 +68,7 @@ const pageSpeedForm = async () => {
 
     <FormsElementInput
       id="displayName"
-      label="Firmenname"
+      label="Firmenname:"
       type="text"
       name="email"
       v-model="formData.displayName"
@@ -68,7 +77,7 @@ const pageSpeedForm = async () => {
 
     <FormsElementInput
       id="url"
-      label="Url"
+      label="Url:"
       type="text"
       name="url"
       v-model="formData.url"
@@ -77,6 +86,7 @@ const pageSpeedForm = async () => {
 
     <FormsElementButton :disabled="isSending">Senden</FormsElementButton>
 
-    <div>{{ message }}</div>
+    <div v-if="message">{{ message }}</div>
+    <div v-if="result">{{ result }}</div>
   </form>
 </template>
