@@ -27,13 +27,13 @@ const pageSpeedForm = async () => {
     }
     const data = await response.json();
     message.value = data.message;
-    result.value = data.websiteId;
+    result.value = data.pageSpeedId;
   } catch (error) {
     error.value = true;
     message.value = "Da ist wohl was schief gelaufen, bitte nochmal versuchen.";
   } finally {
     isSending.value = false;
-    router.push({ path: "/result/?id=" + result.value });
+    router.push({ path: "/result", query: { id: result.value } });
   }
 };
 </script>
