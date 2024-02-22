@@ -17,7 +17,7 @@ const pageSpeedForm = async () => {
   message.value =
     "Das kann jetzt ein einige Minuten dauern, wir bitten um etwas Gedult";
   try {
-    const response = await fetch("http://localhost:3000/controllers/newpage", {
+    const response = await fetch("http://localhost:3001/controllers/newpage", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData.value),
@@ -37,7 +37,7 @@ const pageSpeedForm = async () => {
   }
 };
 </script>
-<template>
+<template class="md:felx">
   <form @submit.prevent="pageSpeedForm">
     <FormsElementInput
       id="firstName"
@@ -85,8 +85,6 @@ const pageSpeedForm = async () => {
     />
 
     <FormsElementButton :disabled="isSending">Senden</FormsElementButton>
-
     <div v-if="message">{{ message }}</div>
-    <div v-if="result">{{ result }}</div>
   </form>
 </template>

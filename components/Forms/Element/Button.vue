@@ -4,5 +4,5 @@ defineProps({
 });
 </script>
 <template>
-  <button :disabled="disabled"><slot /></button>
+  <button :disabled="disabled" class="rounded-full"><slot /></button>
 </template>
