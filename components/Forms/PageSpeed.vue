@@ -38,53 +38,62 @@ const pageSpeedForm = async () => {
 };
 </script>
 <template class="md:felx">
-  <form @submit.prevent="pageSpeedForm">
-    <FormsElementInput
-      id="firstName"
-      label="Vorname:"
-      type="text"
-      name="fname"
-      v-model="formData.firstName"
-      required
-    />
+  <div class="flex-wrap m-10">
+    <form @submit.prevent="pageSpeedForm">
+      <FormsElementInput
+        id="firstName"
+        label="Vorname:"
+        type="text"
+        name="fname"
+        v-model="formData.firstName"
+        required
+      />
 
-    <FormsElementInput
-      id="lastName"
-      label="Nachname:"
-      type="text"
-      name="fname"
-      v-model="formData.lastName"
-      required
-    />
+      <FormsElementInput
+        id="lastName"
+        label="Nachname:"
+        type="text"
+        name="fname"
+        v-model="formData.lastName"
+        required
+      />
 
-    <FormsElementInput
-      id="email"
-      label="E-Mail Adresse:"
-      type="text"
-      name="fname"
-      v-model="formData.email"
-      required
-    />
+      <FormsElementInput
+        id="email"
+        label="E-Mail Adresse:"
+        type="text"
+        name="fname"
+        v-model="formData.email"
+        required
+      />
 
-    <FormsElementInput
-      id="displayName"
-      label="Firmenname:"
-      type="text"
-      name="email"
-      v-model="formData.displayName"
-      required
-    />
+      <FormsElementInput
+        id="displayName"
+        label="Firmenname:"
+        type="text"
+        name="email"
+        v-model="formData.displayName"
+        required
+      />
 
-    <FormsElementInput
-      id="url"
-      label="Url:"
-      type="text"
-      name="url"
-      v-model="formData.url"
-      required
-    />
+      <FormsElementInput
+        id="url"
+        label="Url:"
+        type="text"
+        name="url"
+        v-model="formData.url"
+        required
+      />
 
-    <FormsElementButton :disabled="isSending">Senden</FormsElementButton>
-    <div v-if="message">{{ message }}</div>
-  </form>
+      <FormsElementInput
+        class=""
+        type="checkbox"
+        label="Bestätigung Datenschutz erklärung"
+        required
+      />
+
+      <FormsElementButton :disabled="isSending">Senden</FormsElementButton>
+      <div v-if="message">{{ message }}</div>
+    </form>
+  </div>
 </template>
