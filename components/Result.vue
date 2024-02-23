@@ -21,7 +21,7 @@ onMounted(async () => {
       v-if="data"
       headline="First Contentful Paint"
       :bodytext="data.firstContentfulPaintDisplayValue"
-      secondHeading="Test"
+      secondHeading="i"
       description="1234"
       :class="[
         data?.firstContentfulPaintNumericValue < 1000
@@ -34,7 +34,7 @@ onMounted(async () => {
       v-if="data"
       headline="Largest Contentful Paint"
       :bodytext="data.largestContentfulPaintDisplayValue"
-      description="test"
+      description="i"
       :class="[
         data.largestContentfulPaintNumericValue < 1300
           ? 'bg-green-500'
@@ -44,8 +44,9 @@ onMounted(async () => {
     />
     <DetailViewAccordion
       v-if="data"
-      headline="Largest Contentful Paint"
+      headline="Total Blocking Time"
       :bodytext="data.totalBlockingTimeDisplayValue"
+      secondHeading="i"
       description="test"
       :class="[
         data.firstContentfulPaintNumericValue < 1000
@@ -58,7 +59,7 @@ onMounted(async () => {
       v-if="data"
       headline="Speed Index"
       :bodytext="data.speedIndexDisplayValue"
-      description="test"
+      description="i"
       :class="[
         data.speedIndexNumericValue < 1200 ? 'bg-green-500' : 'bg-red-500',
       ]"
@@ -68,11 +69,20 @@ onMounted(async () => {
   <div
     class="md:flex block max-w m-10 p-5 bg-white border border-gray-400 rounded-md shadow dark:border-gray-700"
   >
-    <DetailViewList
-      v-if="data"
-      headline="Nicht genutztes CSS"
-      :items="data.unusedCssRulesItems"
-    />
+    <div>
+      <DetailViewList
+        v-if="data"
+        headline="Nicht genutztes CSS"
+        secondHeading="i"
+        :items="data.unusedCssRulesItems"
+      />
+      <DetailViewAccordion
+        v-if="data"
+        headline="First Meaningful Display Value"
+        :bodytext="data.firstMeaningfulPaintDisplayValue"
+        secondHeading="i"
+      />
+    </div>
     <!-- <div class="md:flex flex-wrap"> -->
     <!--   <div -->
     <!--     :class="[ -->
@@ -119,23 +129,23 @@ onMounted(async () => {
     <!-- </div> -->
     <!---->
     <!-- <div> -->
-    <!--   <div> -->
-    <!--     First Meaningful Paint Score: -->
-    <!--     {{ data.firstMeaningfulPaintScore }} -->
-    <!--     <details> -->
-    <!--       <summary>Beschreibung</summary> -->
-    <!--       <div>Infotex</div> -->
-    <!--     </details> -->
-    <!--   </div> -->
-    <!---->
-    <!--   <div> -->
-    <!--     First Meaningful Paint DisplayValue: -->
-    <!--     {{ data.firstMeaningfulDisplayValue }} -->
-    <!--     <details> -->
-    <!--       <summary>Beschreibung</summary> -->
-    <!--       <div>Infotext</div> -->
-    <!--     </details> -->
-    <!--   </div> -->
+    <!-- <div> -->
+    <!--   First Meaningful Paint Score: -->
+    <!--   {{ data.firstMeaningfulPaintScore }} -->
+    <!--   <details> -->
+    <!--     <summary>Beschreibung</summary> -->
+    <!--     <div>Infotex</div> -->
+    <!--   </details> -->
+    <!-- </div> -->
+
+    <!-- <div> -->
+    <!--   First Meaningful Paint DisplayValue: -->
+    <!--   {{ data.firstMeaningfulDisplayValue }} -->
+    <!--   <details> -->
+    <!--     <summary>Beschreibung</summary> -->
+    <!--     <div>Infotext</div> -->
+    <!--   </details> -->
+    <!-- </div> -->
     <!---->
     <!--   <div> -->
     <!--     First Contentful Paint Score: -->
@@ -221,4 +231,11 @@ onMounted(async () => {
     <!-- </div> -->
   </div>
 </template>
-<style></style>
+<style>
+details > summary {
+  list-style: none;
+}
+details > summary::-webkit-details-marker {
+  display: none;
+}
+</style>
