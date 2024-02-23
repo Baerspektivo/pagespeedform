@@ -16,8 +16,11 @@ const updateValue = (event) => {
 };
 </script>
 <template>
-  <div>
-    <label :for="id">{{ label }}</label>
+  <div
+    class="flex flex-col md:flex-row md:items-center"
+    :class="{ 'md:flex-row-reverse': type === 'checkbox' }"
+  >
+    <label :for="id" class="w-1/4">{{ label }}</label>
     <input
       :id="id"
       :type="type"
@@ -25,6 +28,7 @@ const updateValue = (event) => {
       :required="required"
       :value="modelValue"
       @input="updateValue"
+      class="my-2 border-black border-2"
     />
   </div>
 </template>
