@@ -16,11 +16,10 @@ const updateValue = (event) => {
 };
 </script>
 <template>
-  <div
-    class="flex flex-col md:flex-row md:items-center"
-    :class="{ 'md:flex-row-reverse': type === 'checkbox' }"
-  >
-    <label :for="id" class="w-1/4">{{ label }}</label>
+  <div class="flex flex-col md:flex-row md:items-center">
+    <label :for="id" class="w-1/2" :class="{ 'w-5/6': type === 'checkbox' }">{{
+      label
+    }}</label>
     <input
       :id="id"
       :type="type"

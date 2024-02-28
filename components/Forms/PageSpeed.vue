@@ -10,6 +10,7 @@ const formData = ref({
   email: "",
   displayName: "",
   url: "",
+  dsgvo: false,
 });
 
 const pageSpeedForm = async () => {
@@ -37,63 +38,66 @@ const pageSpeedForm = async () => {
   }
 };
 </script>
-<template class="md:felx">
-  <div class="flex-wrap m-10">
-    <form @submit.prevent="pageSpeedForm">
-      <FormsElementInput
-        id="firstName"
-        label="Vorname:"
-        type="text"
-        name="fname"
-        v-model="formData.firstName"
-        required
-      />
+<template>
+  <form @submit.prevent="pageSpeedForm" class="flex-wrap m-10">
+    <FormsElementInput
+      id="firstName"
+      label="Vorname:"
+      type="text"
+      name="fname"
+      v-model="formData.firstName"
+      required
+    />
 
-      <FormsElementInput
-        id="lastName"
-        label="Nachname:"
-        type="text"
-        name="fname"
-        v-model="formData.lastName"
-        required
-      />
+    <FormsElementInput
+      id="lastName"
+      label="Nachname:"
+      type="text"
+      name="fname"
+      v-model="formData.lastName"
+      required
+    />
 
-      <FormsElementInput
-        id="email"
-        label="E-Mail Adresse:"
-        type="text"
-        name="fname"
-        v-model="formData.email"
-        required
-      />
+    <FormsElementInput
+      id="email"
+      label="E-Mail Adresse:"
+      type="text"
+      name="fname"
+      v-model="formData.email"
+      required
+    />
 
-      <FormsElementInput
-        id="displayName"
-        label="Firmenname:"
-        type="text"
-        name="email"
-        v-model="formData.displayName"
-        required
-      />
+    <FormsElementInput
+      id="displayName"
+      label="Firmenname:"
+      type="text"
+      name="email"
+      v-model="formData.displayName"
+      required
+    />
 
-      <FormsElementInput
-        id="url"
-        label="Url:"
-        type="text"
-        name="url"
-        v-model="formData.url"
-        required
-      />
+    <FormsElementInput
+      id="url"
+      label="Url:"
+      type="text"
+      name="url"
+      v-model="formData.url"
+      required
+    />
 
-      <FormsElementInput
-        class=""
-        type="checkbox"
-        label="Bestätigung Datenschutz erklärung"
-        required
-      />
+    <FormsElementInput
+      class="md:flex-row-reverse md:justify-end m-2 md:items-baseline gap-6"
+      type="checkbox"
+      label="Ich stimme zu, dass meine Angaben aus dem Kontaktformular zur Beantwortung meiner Anfrage erhoben und
+          verarbeitet werden. Hinweis: Sie können Ihre Einwilligung jederzeit für die Zukunft per E-Mail an 
+          info@bitsandlikes.de wiederrufen. Detaillierte Informationen zum Umgang mit Nuterdaten finden Sie in unserer
+          Datenschutzerklärung"
+      required
+    />
 
-      <FormsElementButton :disabled="isSending">Senden</FormsElementButton>
-      <div v-if="message">{{ message }}</div>
-    </form>
-  </div>
+    <FormsElementButton :disabled="isSending" class="bg-sky-500 p-2.5"
+      >Senden</FormsElementButton
+    >
+    <div v-if="message">{{ message }}</div>
+  </form>
 </template>
