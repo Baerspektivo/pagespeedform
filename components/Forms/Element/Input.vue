@@ -16,10 +16,13 @@ const updateValue = (event) => {
 };
 </script>
 <template>
-  <div class="flex flex-col md:flex-row md:items-center">
-    <label :for="id" class="w-1/2" :class="{ 'w-5/6': type === 'checkbox' }">{{
-      label
-    }}</label>
+  <div class="overflow-hidden mb:basis-full w-full">
+    <label
+      :for="id"
+      class="mb-2 block text-prime font-medium"
+      :class="{ 'w-5/6': type === 'checkbox' }"
+      >{{ label }}</label
+    >
     <input
       :id="id"
       :type="type"
@@ -27,7 +30,20 @@ const updateValue = (event) => {
       :required="required"
       :value="modelValue"
       @input="updateValue"
-      class="my-2 border-black border-2"
+      class="focus:shadow-outline mb-3 md:w-full appearance-none py-2 px-3 leading-tight text-gray-700 focus:outline-none border-b-4 border-accent border-red text-red"
+      :class="{
+        'focus:shadow-outline': modelValue,
+        'mb-3': modelValue,
+        'w-full': modelValue,
+        'appearance-none': modelValue,
+        'py-2': modelValue,
+        'px-3': modelValue,
+        'leading-tight': modelValue,
+        'text-gray-700': modelValue,
+        'focus:outline-none': modelValue,
+        'border-b-4': modelValue,
+        'border-accent': modelValue,
+      }"
     />
   </div>
 </template>

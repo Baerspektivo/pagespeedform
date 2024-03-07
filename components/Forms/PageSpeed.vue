@@ -39,7 +39,12 @@ const pageSpeedForm = async () => {
 };
 </script>
 <template>
-  <form @submit.prevent="pageSpeedForm" class="flex-wrap m-10">
+  <form
+    @submit.prevent="pageSpeedForm"
+    class="my-4 pb-8"
+    novalidate=""
+    backgroundstyle="default"
+  >
     <FormsElementInput
       id="firstName"
       label="Vorname:"
@@ -85,19 +90,13 @@ const pageSpeedForm = async () => {
       required
     />
 
-    <FormsElementInput
-      class="md:flex-row-reverse md:justify-end m-2 md:items-baseline gap-6"
+    <FormsElementCheckBox
       type="checkbox"
-      label="Ich stimme zu, dass meine Angaben aus dem Kontaktformular zur Beantwortung meiner Anfrage erhoben und
-          verarbeitet werden. Hinweis: Sie können Ihre Einwilligung jederzeit für die Zukunft per E-Mail an 
-          info@bitsandlikes.de wiederrufen. Detaillierte Informationen zum Umgang mit Nuterdaten finden Sie in unserer
-          Datenschutzerklärung"
+      label='Ich stimme zu, dass meine Angaben aus dem Kontaktformular zur Beantwortung meiner Anfrage erhoben und verarbeitet werden. Hinweis: Sie können Ihre Einwilligung jederzeit für die Zukunft per E-Mail an &lt;a href="mailto:info@bitsandlikes.de" &gt;info@bitsandlikes.de&lt;/a&gt; widerrufen. Detaillierte Informationen zum Umgang mit Nutzerdaten finden Sie in unserer &lt;a href="/datenschutz" target="_blank" &gt;Datenschutzerklärung.&lt;/a&gt;'
       required
     />
 
-    <FormsElementButton :disabled="isSending" class="bg-sky-500 p-2.5"
-      >Senden</FormsElementButton
-    >
+    <FormsElementButton :disabled="isSending">Kontaktieren</FormsElementButton>
     <div v-if="message">{{ message }}</div>
   </form>
 </template>
